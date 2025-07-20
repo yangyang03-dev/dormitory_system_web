@@ -26,13 +26,13 @@ jobs:
         npm install -g @quasar/cli
         quasar build
 
-      - name: Setup SSH
-        run: |
+    - name: Setup SSH
+      run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 52.197.225.198 >> ~/.ssh/known_hosts
 
-      - name: Deploy via SCP
-        run: |
+    - name: Deploy via SCP
+      run: |
           scp -r dist/spa/* ubuntu@52.197.225.198:/var/www/html/
