@@ -52,6 +52,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import { api } from 'boot/axios'
+import { baseURL } from 'boot/axios'
 import { Notify } from 'quasar'
 const description = ref('')
 const roomNumber = ref('')
@@ -125,7 +126,7 @@ const submitTicket = async () => {
 }
 
 const viewImage = (url) => {
-  imageUrl.value = `http://localhost:8080${url}`
+  imageUrl.value = baseURL+ url
   showImageDialog.value = true
 }
 </script>
