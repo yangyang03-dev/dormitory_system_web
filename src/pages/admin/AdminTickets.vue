@@ -107,6 +107,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { api } from 'boot/axios'
+import { baseURL } from 'boot/axios'
 import { Notify } from 'quasar'
 
 const tickets = ref([])
@@ -167,7 +168,7 @@ const viewDescription = (desc) => {
 }
 
 const openImage = (url) => {
-  imageUrl.value = `http://localhost:8080${url}`
+  imageUrl.value = baseURL+ url
   showImageDialog.value = true
 }
 

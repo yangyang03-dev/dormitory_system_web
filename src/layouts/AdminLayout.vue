@@ -2,6 +2,15 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="bg-deep-orange-8 text-white">
       <q-toolbar>
+        <q-btn 
+          flat 
+          dense 
+          round 
+          icon="menu"
+          aria-label="Menu"
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          class="q-mr-sm"
+        />
         <q-toolbar-title>Admin Panel</q-toolbar-title>
         <q-btn flat icon="logout" label="Logout" @click="logout" />
       </q-toolbar>
