@@ -40,7 +40,7 @@ const login = async () => {
     const token = res.data.token
     localStorage.setItem('admin_token', token)
     api.defaults.headers.common.Authorization = `Bearer ${token}`
-
+    console.log('Token stored:', localStorage.getItem('admin_token'))
     if (authStore.setAuthFromToken(token)) {
       Notify.create({
         type: 'positive',

@@ -13,9 +13,13 @@ const api = axios.create({
 })
 export default defineBoot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
+  console.log('Axios boot initialized')
   const token = localStorage.getItem('authToken')
+  console.log('Token in boot:', token)
+
   const authStore = useAuthStore()
   if (token) {
+    console.log('Setting Authorization header')
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`
     authStore.setAuthFromToken(token)
   }
