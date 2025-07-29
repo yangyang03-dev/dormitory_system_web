@@ -163,10 +163,33 @@ const genderChartData = computed(() => {
 })
 
 const columns = [
-  { name: 'name', label: 'Name', field: 'name', align: 'left' },
-  { name: 'gender', label: 'Gender', field: 'gender', align: 'left' },
-  { name: 'roomNumber', label: 'Room', field: 'roomNumber', align: 'left' },
-  { name: 'actions', label: 'Actions', align: 'center' }
+  {
+    name: 'name',
+    label: 'Name',
+    field: 'name',
+    align: 'left',                // body cells
+    headerClasses: 'text-left'    // header cell
+  },
+  {
+    name: 'gender',
+    label: 'Gender',
+    field: 'gender',
+    align: 'left',
+    headerClasses: 'text-left'
+  },
+  {
+    name: 'roomNumber',
+    label: 'Room',
+    field: 'roomNumber',
+    align: 'left',
+    headerClasses: 'text-left'
+  },
+  {
+    name: 'actions',
+    label: 'Actions',
+    align: 'center',              // both header & body centred
+    headerClasses: 'text-center'
+  }
 ]
 
 onMounted(async () => {
@@ -174,3 +197,6 @@ onMounted(async () => {
   students.value = res.data
 })
 </script>
+<style scoped>
+.q-table thead th { text-align: left; }
+</style>
