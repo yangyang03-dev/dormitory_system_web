@@ -36,8 +36,6 @@
             row-key="id"
             flat
             bordered
-            dense
-            class="q-mb-md"
           >
             <template v-slot:body-cell-actions="props">
               <q-td>
@@ -109,13 +107,6 @@ const showInfoDialog = ref(false)
 const showTable = ref(false)
 const showLeftStudents = ref(false)
 
-const columns = [
-  { name: 'name', label: 'Name', align: 'left', field: 'name' },
-  { name: 'gender', label: 'Gender', align: 'left', field: 'gender' },
-  { name: 'roomNumber', label: 'Room', align: 'left', field: 'roomNumber' },
-  { name: 'actions', label: 'Actions', align: 'center' }
-]
-
 const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1)
 
 const selectStudent = (student) => {
@@ -170,6 +161,13 @@ const genderChartData = computed(() => {
     ]
   }
 })
+
+const columns = [
+  { name: 'name', label: 'Name', field: 'name', align: 'left' },
+  { name: 'gender', label: 'Gender', field: 'gender', align: 'left' },
+  { name: 'roomNumber', label: 'Room', field: 'roomNumber', align: 'left' },
+  { name: 'actions', label: 'Actions', align: 'center' }
+]
 
 onMounted(async () => {
   const res = await api.get('/api/students', { withCredentials: true })
