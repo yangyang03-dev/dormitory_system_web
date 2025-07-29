@@ -23,7 +23,7 @@
         <q-toggle v-model="showLeftStudents" label="Show students who left" />
       </q-card-section>
 
-      <!-- Grouped Student Table -->
+      <!-- Grouped Student Tables -->
       <q-card-section v-if="showTable">
         <div v-for="(group, status) in groupedStudents" :key="status" class="q-mb-md">
           <div class="text-subtitle1 text-weight-bold q-mb-sm">
@@ -36,8 +36,9 @@
             row-key="id"
             flat
             bordered
+            dense
+            class="q-mb-md"
           >
-            <!-- Actions Column -->
             <template v-slot:body-cell-actions="props">
               <q-td>
                 <q-btn
@@ -108,6 +109,13 @@ const showInfoDialog = ref(false)
 const showTable = ref(false)
 const showLeftStudents = ref(false)
 
+const columns = [
+  { name: 'name', label: 'Name', align: 'left', field: 'name' },
+  { name: 'gender', label: 'Gender', align: 'left', field: 'gender' },
+  { name: 'roomNumber', label: 'Room', align: 'left', field: 'roomNumber' },
+  { name: 'actions', label: 'Actions', align: 'center' }
+]
+
 const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1)
 
 const selectStudent = (student) => {
@@ -162,13 +170,6 @@ const genderChartData = computed(() => {
     ]
   }
 })
-
-const columns = [
-  { name: 'name', label: 'Name', field: 'name', align: 'left' },
-  { name: 'gender', label: 'Gender', field: 'gender', align: 'left' },
-  { name: 'roomNumber', label: 'Room', field: 'roomNumber', align: 'left' },
-  { name: 'actions', label: 'Actions', align: 'left' }
-]
 
 onMounted(async () => {
   const res = await api.get('/api/students', { withCredentials: true })
