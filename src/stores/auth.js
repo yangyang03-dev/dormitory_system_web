@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth', {
             ? 'USER' 
             : null
         return true
-      } catch (error) {
+      } catch  {
         this.clearAuth()
         return false
       }
