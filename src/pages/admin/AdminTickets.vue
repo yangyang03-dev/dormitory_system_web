@@ -127,7 +127,7 @@ const columns = [
   { name: 'image', label: 'Image', field: 'imageUrl', align: 'left' },
   { name: 'createdAt', label: 'Created At', field: row => new Date(row.createdAt).toLocaleString(), align: 'left' },
   { name: 'status', label: 'Status', field: 'status', align: 'left' },
-  { name: 'actions', label: 'Actions', align: 'right' }
+  { name: 'actions', label: 'Actions', align: 'left' }
 ]
 
 const fetchData = async () => {

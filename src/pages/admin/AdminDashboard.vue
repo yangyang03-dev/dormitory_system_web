@@ -155,7 +155,7 @@ onMounted(async () => {
     totalStudents.value = studentsRes.data.length
     pendingApplications.value = applicationsRes.data.filter(app => app.status === 'pending').length
     pendingCheckouts.value = checkoutsRes.data.filter(checkout => checkout.status === 'pending').length
-    pendingTickets.value = ticketsRes.data.filter(ticket => ticket.status === 'pending').length
+    pendingTickets.value = ticketsRes.data.filter(ticket => ticket.status === 'submitted').length
 
   } catch (err) {
     Notify.create({ type: 'negative', message: 'Failed to load dashboard data' })

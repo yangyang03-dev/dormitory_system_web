@@ -87,7 +87,7 @@ const columns = [
   { name: 'content', label: 'Content', field: 'content', align: 'left' },
   { name: 'createdAt', label: 'Published Time', field: row => new Date(row.createdAt).toLocaleString(), align: 'left' },
   { name: 'readBy', label: 'Readers', align: 'left' },
-  { name: 'actions', label: 'Actions', align: 'right' }
+  { name: 'actions', label: 'Actions', align: 'left' }
 ]
 
 const fetchMessages = async () => {

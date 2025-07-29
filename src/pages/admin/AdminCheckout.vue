@@ -130,7 +130,7 @@ const columns = [
   { name: 'submittedAt', label: 'Submitted At', field: row => new Date(row.requestedAt).toLocaleString(), align: 'left' },
   { name: 'reason', label: 'Reason', field: 'reason', align: 'left' },
   { name: 'status', label: 'Status', field: 'status', align: 'left' },
-  { name: 'actions', label: 'Actions', align: 'right' }
+  { name: 'actions', label: 'Actions', align: 'left' }
 ]
 
 const pending = computed(() => checkouts.value.filter(c => c.status === 'pending'))

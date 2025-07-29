@@ -93,7 +93,7 @@ const columns = [
   { name: 'roomNumber', label: 'Room Number', field: 'roomNumber', align: 'left' },
   { name: 'resident', label: 'Resident', field: 'resident', align: 'left' },
   { name: 'signedAt', label: 'Signed At', field: 'signedAt', align: 'left' },
-  { name: 'actions', label: 'Actions', field: 'actions', align: 'right' }
+  { name: 'actions', label: 'Actions', field: 'actions', align: 'left' }
 ]
 
 const formatDate = (timestamp) => {
