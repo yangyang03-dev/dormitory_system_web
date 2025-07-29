@@ -22,7 +22,6 @@ import { api } from 'boot/axios'
 import { Notify } from 'quasar'
 //import { jwtDecode } from 'jwt-decode'
 import { useAuthStore } from 'stores/auth'
-console.log('LoginPage loaded')
 const authStore = useAuthStore()
 const username = ref('')
 const password = ref('')

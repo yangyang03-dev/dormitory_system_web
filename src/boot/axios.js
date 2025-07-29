@@ -14,7 +14,7 @@ const api = axios.create({
 export default defineBoot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
   console.log('Axios boot initialized')
-  const token = localStorage.getItem('authToken')
+  const token = localStorage.getItem('admin_token')
   console.log('Token in boot:', token)
 
   const authStore = useAuthStore()
