@@ -9,12 +9,8 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     initialize() {
-      console.log('Initializing auth store')
       const token = localStorage.getItem('admin_token')
-      console.log('Token found:', !!token)
       if (token) {
-        const decoded = jwtDecode(token)
-        console.log('Decoded token:', decoded)
         this.setAuthFromToken(token)
         return true
       }
@@ -33,7 +29,6 @@ export const useAuthStore = defineStore('auth', {
         return true
       } catch (error) {
         this.clearAuth()
-        console.error('Invalid token:', error)
         return false
       }
     },

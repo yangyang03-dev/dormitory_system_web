@@ -39,7 +39,6 @@ const login = async () => {
     const token = res.data.token
     localStorage.setItem('admin_token', token)
     api.defaults.headers.common.Authorization = `Bearer ${token}`
-    console.log('Token stored:', localStorage.getItem('admin_token'))
     if (authStore.setAuthFromToken(token)) {
       Notify.create({
         type: 'positive',
@@ -73,7 +72,6 @@ const login = async () => {
     //   Notify.create({ type: 'negative', message: 'Unknown role' })
     // }
   } catch (err) {
-    console.error('Login error:', err)
     Notify.create({
       type: 'negative',
       message: err.response?.data?.message || 'Login failed',
