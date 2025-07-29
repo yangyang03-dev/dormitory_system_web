@@ -164,8 +164,8 @@ const genderChartData = computed(() => {
 })
 
 const columns = [
-  { name: 'name', label: 'Name', field: 'name', align: 'left' },
-  { name: 'gender', label: 'Gender', field: 'gender', align: 'left' },
+  { name: 'name', label: 'Name', field: 'name', align: 'right' },
+  { name: 'gender', label: 'Gender', field: 'gender', align: 'right' },
   { name: 'roomNumber', label: 'Room', field: 'roomNumber', align: 'left' },
   { name: 'actions', label: 'Actions', field: 'actions', align: 'left' }
 ]
