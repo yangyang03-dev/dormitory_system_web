@@ -1,5 +1,6 @@
 import { defineBoot } from '#q-app/wrappers'
 import axios from 'axios'
+import { useAuthStore } from 'stores/auth'
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -13,9 +14,10 @@ const api = axios.create({
 export default defineBoot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
   const token = localStorage.getItem('authToken')
-
+  const authStore = useAuthStore()
   if (token) {
     api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    authStore.setAuthFromToken(token)
   }
   app.config.globalProperties.$axios = axios
   // ^ ^ ^ this will allow you to use this.$axios (for Vue Options API form)

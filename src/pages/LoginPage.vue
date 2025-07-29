@@ -20,8 +20,10 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { api } from 'boot/axios'
 import { Notify } from 'quasar'
-import { jwtDecode } from 'jwt-decode'
+//import { jwtDecode } from 'jwt-decode'
+import { useAuthStore } from 'stores/auth'
 console.log('LoginPage loaded')
+const authStore = useAuthStore()
 const username = ref('')
 const password = ref('')
 const loading = ref(false)
@@ -29,7 +31,7 @@ const router = useRouter()
 
 const login = async () => {
   try {
-    loading.value = true
+    authStore.loading = true
     const res = await api.post('/api/auth/login', {
       username: username.value,
       password: password.value
@@ -39,24 +41,38 @@ const login = async () => {
     localStorage.setItem('admin_token', token)
     api.defaults.headers.common.Authorization = `Bearer ${token}`
 
-    const decoded = jwtDecode(token)
-    const roles = decoded.roles || []
-    const role = roles.includes('ROLE_ADMIN') ? 'ADMIN' :
-             roles.includes('ROLE_USER') ? 'USER' : 'UNKNOWN'
-    console.log('Decoded token:', decoded)
-    Notify.create({
-      type: 'positive',
-      message: 'Login successful',
-      position: 'top'
-    })
-
-    if (role === "ADMIN") {
-      router.push('/admin')
-    } else if (role === "USER") {
-      router.push('/student')
-    } else {
-      Notify.create({ type: 'negative', message: 'Unknown role' })
+    if (authStore.setAuthFromToken(token)) {
+      Notify.create({
+        type: 'positive',
+        message: 'Login successful',
+        position: 'top'
+      })
+      
+      if (authStore.role === "ADMIN") {
+        router.push('/admin')
+      } else if (authStore.role === "USER") {
+        router.push('/student')
+      } else {
+        Notify.create({ type: 'negative', message: 'Unknown role' })
+      }
     }
+    // const decoded = jwtDecode(token)
+    // const roles = decoded.roles || []
+    // const role = roles.includes('ROLE_ADMIN') ? 'ADMIN' :
+    //          roles.includes('ROLE_USER') ? 'USER' : 'UNKNOWN'
+    // Notify.create({
+    //   type: 'positive',
+    //   message: 'Login successful',
+    //   position: 'top'
+    // })
+
+    // if (role === "ADMIN") {
+    //   router.push('/admin')
+    // } else if (role === "USER") {
+    //   router.push('/student')
+    // } else {
+    //   Notify.create({ type: 'negative', message: 'Unknown role' })
+    // }
   } catch (err) {
     console.error('Login error:', err)
     Notify.create({

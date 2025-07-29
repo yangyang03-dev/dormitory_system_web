@@ -57,6 +57,8 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { api } from 'boot/axios'
+import { useAuthStore } from 'stores/auth'
+const authStore = useAuthStore()
 const links = [
   { icon: 'home', text: 'Home',to: '/student/' },
   { icon: 'build', text: 'My Tickets',to:'/student/tickets' },
@@ -70,6 +72,7 @@ const leftDrawerOpen = ref(true)
 
 const logout = () => {
   localStorage.removeItem('admin_token')
+  authStore.clearAuth()
   delete api.defaults.headers.common.Authorization
   router.push('/login')
 }
