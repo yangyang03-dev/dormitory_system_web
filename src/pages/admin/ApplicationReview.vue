@@ -10,62 +10,73 @@
       <q-separator />
 
       <!-- Application Tables by Status -->
-      <q-card-section v-for="status in ['pending', 'accepted', 'rejected']" :key="status">
-        <div class="text-subtitle1 text-bold q-mb-sm">{{ capitalize(status) }} Applications</div>
+      <!-- Application Tables by Status -->
+<q-card-section
+  v-for="status in ['pending', 'accepted', 'rejected']"
+  :key="status"
+>
+  <div class="text-subtitle1 text-bold q-mb-sm">
+    {{ capitalize(status) }} Applications
+  </div>
 
-        <q-markup-table flat bordered>
-          <thead>
-            <tr>
-              <th>Applicant</th>
-              <th>Gender</th>
-              <th>Nationality</th>
-              <th>Submitted At</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="app in applicationsByStatus[status]"
-              :key="app.id"
-            >
-              <td>
-                <q-btn
-                  flat dense color="primary"
-                  :label="app.name"
-                  @click="selectApplication(app)"
-                />
-              </td>
-              <td>{{ app.gender }}</td>
-              <td>{{ app.nationality }}</td>
-              <td>{{ formatDate(app.submittedAt) }}</td>
-              <td>
-                <q-badge :color="status === 'rejected' ? 'negative' : 'primary'">
-                  {{ app.status }}
-                </q-badge>
-              </td>
-              <td>
-                <div class="q-gutter-sm">
-                  <q-btn
-                    v-if="status === 'pending'"
-                    color="negative"
-                    size="sm"
-                    label="Reject"
-                    @click="rejectApplication(app.id)"
-                  />
-                  <q-btn
-                    v-if="status === 'pending'"
-                    color="positive"
-                    size="sm"
-                    label="Select Room and Approve"
-                    @click="openRoomDialog(app)"
-                  />
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </q-markup-table>
-      </q-card-section>
+  <q-table
+    :rows="applicationsByStatus[status]"
+    :columns="columns"
+    row-key="id"
+    flat
+    bordered
+    class="q-mb-lg"
+  >
+    <!-- applicant column: clickable name -->
+    <template #body-cell-applicant="props">
+      <q-td>
+        <q-btn
+          flat dense color="primary"
+          :label="props.row.name"
+          @click="selectApplication(props.row)"
+        />
+      </q-td>
+    </template>
+
+    <!-- submittedAt column: nice date formatting -->
+    <template #body-cell-submittedAt="props">
+      <q-td>{{ formatDate(props.row.submittedAt) }}</q-td>
+    </template>
+
+    <!-- status column: coloured badge -->
+    <template #body-cell-status="props">
+      <q-td>
+        <q-badge
+          :color="props.row.status === 'rejected' ? 'negative' : 'primary'"
+        >
+          {{ props.row.status }}
+        </q-badge>
+      </q-td>
+    </template>
+
+    <!-- actions column: reject / approve buttons -->
+    <template #body-cell-actions="props">
+      <q-td>
+        <div class="q-gutter-sm">
+          <q-btn
+            v-if="props.row.status === 'pending'"
+            color="negative"
+            size="sm"
+            label="Reject"
+            @click="rejectApplication(props.row.id)"
+          />
+          <q-btn
+            v-if="props.row.status === 'pending'"
+            color="positive"
+            size="sm"
+            label="Select Room and Approve"
+            @click="openRoomDialog(props.row)"
+          />
+        </div>
+      </q-td>
+    </template>
+  </q-table>
+</q-card-section>
     </q-card>
 
     <!-- Application Info Dialog -->
@@ -119,7 +130,49 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { api } from 'boot/axios'
-
+const columns = [
+  {
+    name: 'applicant',
+    label: 'Applicant',
+    field: 'name',
+    align: 'left',
+    headerClasses: 'text-left'
+  },
+  {
+    name: 'gender',
+    label: 'Gender',
+    field: 'gender',
+    align: 'left',
+    headerClasses: 'text-left'
+  },
+  {
+    name: 'nationality',
+    label: 'Nationality',
+    field: 'nationality',
+    align: 'left',
+    headerClasses: 'text-left'
+  },
+  {
+    name: 'submittedAt',
+    label: 'Submitted&nbsp;At',
+    field: 'submittedAt',
+    align: 'left',
+    headerClasses: 'text-left'
+  },
+  {
+    name: 'status',
+    label: 'Status',
+    field: 'status',
+    align: 'left',
+    headerClasses: 'text-left'
+  },
+  {
+    name: 'actions',
+    label: 'Actions',
+    align: 'left',
+    headerClasses: 'text-left'
+  }
+]
 const applications = ref([])
 const selectedApp = ref({})
 const showAppDialog = ref(false)

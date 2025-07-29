@@ -187,8 +187,8 @@ const columns = [
   {
     name: 'actions',
     label: 'Actions',
-    align: 'center',              // both header & body centred
-    headerClasses: 'text-center'
+    align: 'left',              // both header & body centred
+    headerClasses: 'text-left'
   }
 ]
 
