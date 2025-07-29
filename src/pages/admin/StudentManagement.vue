@@ -29,31 +29,26 @@
           <div class="text-subtitle1 text-weight-bold q-mb-sm">
             {{ capitalize(status) }}
           </div>
-          <q-markup-table flat bordered class="q-table__card">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Room</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="student in group" :key="student.id">
-                <td>{{ student.name }}</td>
-                <td>{{ student.gender }}</td>
-                <td>{{ student.roomNumber }}</td>
-                <td>
-                  <q-btn
-                    label="More Info"
-                    size="sm"
-                    color="secondary"
-                    @click="selectStudent(student)"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </q-markup-table>
+
+          <q-table
+            :rows="group"
+            :columns="columns"
+            row-key="id"
+            flat
+            bordered
+          >
+            <!-- Actions Column -->
+            <template v-slot:body-cell-actions="props">
+              <q-td>
+                <q-btn
+                  label="More Info"
+                  size="sm"
+                  color="secondary"
+                  @click="selectStudent(props.row)"
+                />
+              </q-td>
+            </template>
+          </q-table>
         </div>
       </q-card-section>
 
@@ -129,7 +124,7 @@ const updateStudentStatus = async (newStatus) => {
   try {
     await api.put(`/api/students/${selectedStudent.value.id}/status`, null, {
       params: { status: newStatus }
-   })
+    })
     selectedStudent.value.status = newStatus
     const index = students.value.findIndex(s => s.id === selectedStudent.value.id)
     if (index !== -1) students.value[index].status = newStatus
@@ -168,8 +163,15 @@ const genderChartData = computed(() => {
   }
 })
 
+const columns = [
+  { name: 'name', label: 'Name', field: 'name', align: 'left' },
+  { name: 'gender', label: 'Gender', field: 'gender', align: 'left' },
+  { name: 'roomNumber', label: 'Room', field: 'roomNumber', align: 'left' },
+  { name: 'actions', label: 'Actions', field: 'actions', align: 'left' }
+]
+
 onMounted(async () => {
-  const res = await api.get('/api/students',{ withCredentials: true })
+  const res = await api.get('/api/students', { withCredentials: true })
   students.value = res.data
 })
 </script>
