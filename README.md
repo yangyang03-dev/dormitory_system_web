@@ -12,11 +12,13 @@ A full-stack web application for managing student dormitory operations including
 
 ## 📸 Screenshots
 
-> *(Replace below with real URLs if available)*
 
-- ![Admin Dashboard](https://yourdomain.com/screenshots/admin-dashboard.png)
-- ![Student Panel](https://yourdomain.com/screenshots/student-home.png)
-- ![Maintenance Ticket](https://yourdomain.com/screenshots/ticket-example.png)
+
+- ![Admin Dashboard](assets/admindash.png)
+- ![Preapply](assets/preapply.png)
+- ![Login](assets/login.png)
+- ![Student Panel](assets/stuhome.png)
+
 
 ---
 
