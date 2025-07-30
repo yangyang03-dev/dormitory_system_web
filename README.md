@@ -6,20 +6,25 @@ A full-stack web application for managing student dormitory operations including
 
 ## 🌐 Live Demo
 
-> 🚀 Visit: [yourdomain.com](https://yourdomain.com) (custom domain via Cloudflare + Amazon Lightsail)
+> 🚀 Visit: [dorm.oeyoungisthegod.tk](dorm.oeyoungisthegod.tk/admin) (custom domain via Cloudflare + Amazon Lightsail, you can try with username admin1234@dorm.jp and password 123456)
 
 ---
+
+## 🚨 This is the front end repo, you can navigate to [backend](https://github.com/yangyang03-dev/dormitory_management_backend) to look up for backend stuff
 
 ## 📸 Screenshots
 
 
-
+Admin Dashboard
 - ![Admin Dashboard](assets/admindash.png)
+Pre-application page
 - ![Preapply](assets/preapply.png)
+Login page 
 - ![Login](assets/login.png)
+Student Homepage
 - ![Student Panel](assets/stuhome.png)
 
-
+**Feel free to view more screenshots at /assets**
 ---
 
 ## 🧠 System Overview
@@ -172,9 +177,9 @@ server {
 
 ## 👨‍💻 Author
 
-**Oe Young**  
-Graduate Student | Web Developer | Bioinformatics Enthusiast  
-🇯🇵 Currently in Kanto Region, Japan
+**Yang Yang**  
+Graduate Student at UTokyo | Web Developer 
+🇯🇵 Currently in Chiba, Japan
 
 ---
 
