@@ -1,3 +1,11 @@
+<p align="right">
+  <a href="assets/README.ja.md">
+    <img alt="日本語" src="https://img.shields.io/badge/lang-日本語-blue" />
+  </a>
+  <a href="assets/README.zh.md">
+    <img alt="中文" src="https://img.shields.io/badge/lang-中文-green" />
+  </a>
+</p>
 # 🏢 Dormitory Management System
 
 A full-stack web application for managing student dormitory operations including applications, room assignments, contracts, maintenance tickets, checkouts, and messaging. Designed for real-world workflows and admin/student roles.
@@ -167,11 +175,11 @@ server {
 
 ## 📈 Future Improvements
 
-- Email notifications
-- Export student data as CSV
-- Localization (i18n)
+- Features of rent payment(including real payment API connections)
+- Chinese and Japanese language localization (i18n)
 - Dark mode toggle
-- CI/CD full automation
+- CI/CD more advanced implmentation
+- Use multiple servers to host the Springboot app; use K8S and Docker to manage them
 
 ---
 
