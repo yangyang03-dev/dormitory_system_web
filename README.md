@@ -6,6 +6,7 @@
     <img alt="中文" src="https://img.shields.io/badge/lang-中文-green" />
   </a>
 </p>
+
 # 🏢 Dormitory Management System
 
 A full-stack web application for managing student dormitory operations including applications, room assignments, contracts, maintenance tickets, checkouts, and messaging. Designed for real-world workflows and admin/student roles.
