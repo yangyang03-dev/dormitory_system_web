@@ -6,7 +6,7 @@ A full-stack web application for managing student dormitory operations including
 
 ## 🌐 Live Demo
 
-> 🚀 Visit: [dorm.oeyoungisthegod.tk](dorm.oeyoungisthegod.tk/admin) (custom domain via Cloudflare + Amazon Lightsail, you can try with username admin1234@dorm.jp and password 123456)
+> 🚀 Visit: [dorm.oeyoungisthegod.tk](https://dorm.oeyoungisthegod.tk/admin) (custom domain via Cloudflare + Amazon Lightsail, you can try with username admin1234@dorm.jp and password 123456)
 
 ---
 
